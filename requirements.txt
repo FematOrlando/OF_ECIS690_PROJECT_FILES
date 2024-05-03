@@ -1,0 +1,7 @@
+pandas>=0.19
+Cython>= 0.28.5
+numpy>=1.26.4
+scikit-learn>=1.0.0
+Flask>=2.1.0
+gunicorn>=19.9.0
+Flask-Mail>=0.9.1

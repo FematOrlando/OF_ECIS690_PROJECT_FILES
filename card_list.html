@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html >
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<head>
+  <meta charset="UTF-8">
+  <title>ML API</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+  
+</head>
+	<script>
+    function convertListToValues() {
+      const transactionListInput = document.querySelector('input[name="Transaction List"]');
+      const transactionValues = transactionListInput.value.split(",");
+
+      // Process each singular value as needed
+      console.log(transactionValues); // Example: Access individual values for further processing
+
+      // Send singular values to a prediction function (replace with your actual function)
+      //predictFraud(transactionValues);
+    }
+  </script>
+
+<body>
+ <div class="login">
+	<h1>Credit Card Transaction-Fraud Prediction </h1>
+
+     <!-- Main Input For Receiving Query to our ML -->
+    <form action="{{ url_for('predict')}}"method="post">
+		<label for="input-values">Values (comma separated):</label>
+    	<input type="text" name="Transaction List" placeholder="Transaction List" required="required" />
+
+
+        <button type="submit" class="btn btn-primary btn-block btn-large" onclick="convertListToValues()">Predict</button>
+    </form>
+
+   <br>
+   <br>
+   
+   <h4>User Entered List: {{ user_list }}</h4>
+
+   <br>
+   
+   <h4>Scaled Features:</h4>
+    <ul>
+        {% for feature in scaled_features %}
+            <li>{{ feature }}</li>
+        {% endfor %}
+    </ul>
+
+    <br>
+
+   <br>
+   {{ prediction_text }}
+   <br>
+   {{ sent_mail }}
+   
+
+ </div>
+
+
+</body>
+</html>
